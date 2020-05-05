@@ -16,19 +16,23 @@ public class HealthPickup : MonoBehaviour
     {
         if(collider.gameObject.tag.Equals("Player"))
         {
-            if(gameManager.P1CurHealth < gameManager.p1LifeMax)
+            
+            if(GameManager.P1CurHealth < gameManager.p1LifeMax)
             {
+                SoundManager.PlaySound("Health");
                 Destroy(gameObject);
-                gameManager.P1CurHealth = gameManager.p1Health + healthPickup;
+                GameManager.P1CurHealth = GameManager.p1Health + healthPickup;
             }
         }
 
         if(collider.gameObject.tag.Equals("Player2"))
         {
-            if(gameManager.P2CurHealth < gameManager.p2LifeMax)
+            
+            if(GameManager.P2CurHealth < gameManager.p2LifeMax)
             {
+                SoundManager.PlaySound("Health");
                 Destroy(gameObject);
-                gameManager.P2CurHealth = gameManager.p2Health + healthPickup;
+                GameManager.P2CurHealth = gameManager.p2Health + healthPickup;
             }
         }
     }

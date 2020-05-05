@@ -5,15 +5,21 @@ using UnityEngine.UI;
 
 public class Score : MonoBehaviour
 {
+    GameManager gameManager;
+    public GameObject P1Win;
     public static int scoreAmount;
+    public int curScore;
 
     public Text scoreText;
 
+    Countdown cd;
     // Start is called before the first frame update
     void Start()
     {
-        scoreText = GetComponent<Text>();
         scoreAmount = 0;
+        
+        scoreText = GetComponent<Text>();
+        
     }
 
     // Update is called once per frame
@@ -21,6 +27,15 @@ public class Score : MonoBehaviour
     {
 
         scoreText.text = "P1 Score: " + scoreAmount;
+        curScore = scoreAmount;
+
+        if (curScore >= 50)
+        {
+            //SoundManager.PlaySound("Win");
+            Time.timeScale = 0f;
+            //player2.SetActive(false);
+            P1Win.SetActive(true);
+        }
 
     }
 

@@ -15,7 +15,7 @@ public class CoinSpawner : MonoBehaviour
     void Start()
     {
         coinSpawnAllowed = true;
-        InvokeRepeating ("SpawnCoin", 5f, 5f);
+        InvokeRepeating ("SpawnCoin", 5f, 1f);
     }
 
     // Update is called once per frame

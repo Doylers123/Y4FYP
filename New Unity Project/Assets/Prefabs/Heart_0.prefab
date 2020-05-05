@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7501263544707884741}
   - component: {fileID: -4812230713613272226}
   - component: {fileID: 1916788677004616616}
+  - component: {fileID: 5205219841626468920}
   m_Layer: 0
   m_Name: Heart_0
   m_TagString: Untagged
@@ -128,3 +129,22 @@ PolygonCollider2D:
       - {x: 0.035, y: -0.065}
       - {x: 0.065, y: -0.035}
       - {x: 0.065, y: 0.065}
+--- !u!95 &5205219841626468920
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2692902089905663754}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f4730298d82a9b848b2b3c6374995d73, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

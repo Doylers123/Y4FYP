@@ -9,6 +9,7 @@ using UnityEngine.SceneManagement;
 public class CharacterSelection : MonoBehaviour
 {
     private int selectedCharacterIndex;
+    private readonly string selectedCharacter = "SelectedCharacter";
     private Color desiredColor;
     LevelLoader LevelLoader;
     

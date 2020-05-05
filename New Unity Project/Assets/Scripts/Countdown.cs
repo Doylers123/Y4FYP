@@ -6,7 +6,12 @@ using UnityEngine.UI;
 
 public class Countdown : MonoBehaviour
 {
-    RoundStart roundStart;
+    Score score;
+    ScoreP2 score2;
+    GameManager gm;
+    public GameObject P1Win;
+    public GameObject P2Win;
+    public GameObject DrawGame;
     public float currentTime;
     public float startTime;
 
@@ -34,6 +39,36 @@ public class Countdown : MonoBehaviour
         if (currentTime <= 0)
         {
             currentTime = 0;
+            winner();
+        }
+    }//Update
+
+    void winner()
+    {
+
+        if (ScoreP2.scoreAmount2 < Score.scoreAmount)
+        {
+            //SoundManager.PlaySound("Win");
+            P1Win.SetActive(true);
+            Time.timeScale = 0f;
+        }
+        else if (ScoreP2.scoreAmount2 > Score.scoreAmount)
+        {
+            //SoundManager.PlaySound("Win");
+            P2Win.SetActive(true);
+            Time.timeScale = 0f;
+        }
+        else
+        {
+            Draw();
         }
     }
+
+    void Draw()
+    {
+        //SoundManager.PlaySound("Draw");
+        DrawGame.SetActive(true);
+        Time.timeScale = 0f;
+    }
+
 }

@@ -8,13 +8,13 @@ public class GameManager : MonoBehaviour
     public GameObject player1;
     public GameObject player2;
 
-    public int p1Health;
+    public static int p1Health;
     public int p1LifeMax;
-    public int P1CurHealth;
+    public static int P1CurHealth;
     public int numOfHealth;
     public int p2Health;
     public int p2LifeMax;
-    public int P2CurHealth;
+    public static int P2CurHealth;
 
     public GameObject P1Win;
     public GameObject P2Win;
@@ -23,6 +23,10 @@ public class GameManager : MonoBehaviour
     public Image [] p2Lives;
     public Sprite full;
     public Sprite empty;
+
+    Countdown countdown;
+    Score score;
+    ScoreP2 scoreP2;
 
     // Start is called before the first frame update
     void Start()
@@ -34,6 +38,9 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+
+
 
         p1LifeMax = numOfHealth;
         p1Health = P1CurHealth;
@@ -100,22 +107,28 @@ public class GameManager : MonoBehaviour
 
             if (p1Health <= 0)
             {
+                //SoundManager.PlaySound("Win");
+                Time.timeScale = 0f;
                 player1.SetActive(false);
                 P2Win.SetActive(true);
-                Time.timeScale = 0f;
+                
             }
 
             if (p2Health <= 0)
             {
+               // SoundManager.PlaySound("Win");
+                Time.timeScale = 0f;
                 player2.SetActive(false);
                 P1Win.SetActive(true);
-                Time.timeScale = 0f;
+                
             }
+
         }// For
     }//Update
     
     public void hurtP1()
     {
+        SoundManager.PlaySound("Hit");
         P1CurHealth -= 1;
 
         for(int i = 0;i < p1Lives.Length; i++)
@@ -132,6 +145,7 @@ public class GameManager : MonoBehaviour
 
     public void hurtP2() 
     {
+        SoundManager.PlaySound("Hit");
         P2CurHealth -= 1;
 
         for(int i =0;i < p2Lives.Length; i++)

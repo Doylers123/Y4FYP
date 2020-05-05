@@ -47,11 +47,13 @@ public class p2 : MonoBehaviour
 
         if(Input.GetKeyDown(jump) && isGrounded)
         {
+            SoundManager.PlaySound("Jump");
             rb.velocity = new Vector2 (rb.velocity.x, jumpForce);
         }
 
         if(Input.GetKeyDown(eraser))
         {
+            SoundManager.PlaySound("Gun");
             GameObject eraserClone = (GameObject)Instantiate(projectile, throwPoint.position, throwPoint.rotation);
             eraserClone.transform.localScale = transform.localScale;
         }

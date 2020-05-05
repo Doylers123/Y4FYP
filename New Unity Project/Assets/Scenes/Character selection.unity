@@ -525,7 +525,7 @@ MonoBehaviour:
   characterList:
   - splash: {fileID: 21300000, guid: 5e4ce274ec2af8041b54ba71fad85e98, type: 3}
     characterName: Smiley
-    characterColor: {r: 1, g: 1, b: 1, a: 1}
+    characterColor: {r: 1, g: 0, b: 0, a: 1}
   - splash: {fileID: 21300000, guid: 8cab6dc8d3c036240b17655e7d583abc, type: 3}
     characterName: Shock
     characterColor: {r: 1, g: 1, b: 1, a: 1}

@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Score : MonoBehaviour
-{
+public class Score : MonoBehaviour {
     GameManager gameManager;
     public GameObject P1Win;
     public static int scoreAmount;
@@ -14,30 +13,25 @@ public class Score : MonoBehaviour
 
     Countdown cd;
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start () {
         scoreAmount = 0;
-        
-        scoreText = GetComponent<Text>();
-        
+
+        scoreText = GetComponent<Text> ();
+
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update () {
 
         scoreText.text = "P1 Score: " + scoreAmount;
         curScore = scoreAmount;
 
-        if (curScore >= 50)
-        {
-            //SoundManager.PlaySound("Win");
+        if (curScore >= 50) {
             Time.timeScale = 0f;
-            //player2.SetActive(false);
-            P1Win.SetActive(true);
+            P1Win.SetActive (true);
+
         }
 
     }
-
 
 }

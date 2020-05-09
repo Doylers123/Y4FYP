@@ -1,12 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class GameManager : MonoBehaviour
-{
+public class GameManager : MonoBehaviour {
+    public AudioSource audio;
     public GameObject player1;
     public GameObject player2;
+
+    public static bool GameIsPaused = false;
+    public GameObject pauseMenuUI;
 
     public static int p1Health;
     public int p1LifeMax;
@@ -19,8 +23,8 @@ public class GameManager : MonoBehaviour
     public GameObject P1Win;
     public GameObject P2Win;
 
-    public Image [] p1Lives;
-    public Image [] p2Lives;
+    public Image[] p1Lives;
+    public Image[] p2Lives;
     public Sprite full;
     public Sprite empty;
 
@@ -29,134 +33,132 @@ public class GameManager : MonoBehaviour
     ScoreP2 scoreP2;
 
     // Start is called before the first frame update
-    void Start()
-    {
-        P1CurHealth = 5;
-        P2CurHealth = 5;
+    void Start () {
+        P1CurHealth = 5; // sets player ones start health
+        P2CurHealth = 5; // sets player twos start health
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update () {
+        p1LifeMax = numOfHealth; // max life is the same as number of health/hearts
+        p1Health = P1CurHealth; // Player one health is the start health
 
+        p2LifeMax = numOfHealth; // max life is the same as number of health/hearts
+        p2Health = P2CurHealth; // Player one health is the start health
 
-
-
-        p1LifeMax = numOfHealth;
-        p1Health = P1CurHealth;
-
-        p2LifeMax = numOfHealth;
-        p2Health = P2CurHealth;
-
-        for(int i = 0; i < p1Lives.Length; i++)
-        {
-            if(p1Health > numOfHealth)
-            {
-                p1Health = numOfHealth;
+        for (int i = 0; i < p1Lives.Length; i++) {
+            if (p1Health > numOfHealth) { //if the players health is greater than the number of hearts
+                p1Health = numOfHealth; // players health becomes equal to number of hearts
             }
 
-            if (i < p1Health)
-            {
+            if (i < p1Health) {
                 p1Lives[i].sprite = full;
-            }
-            else
-            {
+            } else {
                 p1Lives[i].sprite = empty;
             }
 
-            if (i < numOfHealth)
-            {
+            if (i < numOfHealth) {
                 p1Lives[i].enabled = true;
-            }
-            else
-            {
+            } else {
                 p1Lives[i].enabled = false;
             }
 
-            if (p1Health <= 0)
-            {
-                player1.SetActive(false);
-                P2Win.SetActive(true);
+            if (p1Health <= 0) {
+                player1.SetActive (false);
+                P2Win.SetActive (true);
             }
-        }//for
+        } //for
 
-        for(int i = 0; i < p2Lives.Length; i++)
-        {
-            if(p2Health > numOfHealth)
-            {
+        for (int i = 0; i < p2Lives.Length; i++) {
+            if (p2Health > numOfHealth) {
                 p2Health = numOfHealth;
             }
 
-            if (i < p2Health)
-            {
+            if (i < p2Health) {
                 p2Lives[i].sprite = full;
-            }
-            else
-            {
+            } else {
                 p2Lives[i].sprite = empty;
             }
 
-            if (i < numOfHealth)
-            {
+            if (i < numOfHealth) {
                 p2Lives[i].enabled = true;
-            }
-            else
-            {
+            } else {
                 p2Lives[i].enabled = false;
             }
 
-            if (p1Health <= 0)
-            {
-                //SoundManager.PlaySound("Win");
+            if (p1Health <= 0) {
                 Time.timeScale = 0f;
-                player1.SetActive(false);
-                P2Win.SetActive(true);
-                
+                player1.SetActive (false);
+                P2Win.SetActive (true);
+                audio.Pause ();
+                P1CurHealth = 5;
             }
 
-            if (p2Health <= 0)
-            {
-               // SoundManager.PlaySound("Win");
+            if (p2Health <= 0) {
                 Time.timeScale = 0f;
-                player2.SetActive(false);
-                P1Win.SetActive(true);
-                
+                player2.SetActive (false);
+                P1Win.SetActive (true);
+                audio.Pause ();
+                P1CurHealth = 5;
             }
 
-        }// For
-    }//Update
-    
-    public void hurtP1()
-    {
-        SoundManager.PlaySound("Hit");
+        } // For
+
+        if (Input.GetKeyDown (KeyCode.Escape)) {
+            if (GameIsPaused) {
+                Resume ();
+            } else {
+                Pause ();
+            }
+        }
+
+    } //Update
+
+    public void hurtP1 () {
+        SoundManager.PlaySound ("Hit");
         P1CurHealth -= 1;
 
-        for(int i = 0;i < p1Lives.Length; i++)
-        {
-            if(p1Health > i)
-            {
+        for (int i = 0; i < p1Lives.Length; i++) {
+            if (p1Health > i) {
                 p1Lives[i].sprite = full;
-            }
-            else{
+            } else {
                 p1Lives[i].sprite = empty;
             }
         }
-    }//HurtP1
+    } //HurtP1
 
-    public void hurtP2() 
-    {
-        SoundManager.PlaySound("Hit");
+    public void hurtP2 () {
+        SoundManager.PlaySound ("Hit");
         P2CurHealth -= 1;
 
-        for(int i =0;i < p2Lives.Length; i++)
-        {
-            if(p2Health > i)
-            {
+        for (int i = 0; i < p2Lives.Length; i++) {
+            if (p2Health > i) {
                 p2Lives[i].sprite = full;
-            }
-            else{
+            } else {
                 p2Lives[i].sprite = empty;
             }
         }
-    }//HurtP2
+    } //HurtP2
+
+    public void Resume () {
+        pauseMenuUI.SetActive (false);
+        Time.timeScale = 1f;
+        GameIsPaused = false;
+        audio.Play ();
+    }
+
+    void Pause () {
+        pauseMenuUI.SetActive (true);
+        Time.timeScale = 0f;
+        GameIsPaused = true;
+        audio.Pause ();
+    }
+    public void LoadMenu () {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene (0);
+    }
+    public void QuitGame () {
+        Debug.Log ("Quitting");
+        Application.Quit ();
+    }
 }

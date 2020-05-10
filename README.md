@@ -15,4 +15,5 @@ This GitHub repository holds our final year project of our 4th year in Galway-Ma
 ## Alternatively
 
 * Clone This Repository
-*
+* Click on BattleBeansFinal folder
+* Run BattleBeans.exe

@@ -14,21 +14,19 @@ public class Score : MonoBehaviour {
     Countdown cd;
     // Start is called before the first frame update
     void Start () {
-        scoreAmount = 0;
-
-        scoreText = GetComponent<Text> ();
-
+        scoreAmount = 0; //Sets starting score to 0
+        scoreText = GetComponent<Text> (); // gets the text component
     }
 
     // Update is called once per frame
     void Update () {
 
-        scoreText.text = "P1 Score: " + scoreAmount;
+        scoreText.text = "P1 Score: " + scoreAmount; // adds the score to the score text
         curScore = scoreAmount;
 
-        if (curScore >= 50) {
-            Time.timeScale = 0f;
-            P1Win.SetActive (true);
+        if (curScore >= 50) { // if score reaches 0
+            Time.timeScale = 0f; // freezes time
+            P1Win.SetActive (true); //Player one win screen appears
 
         }
 

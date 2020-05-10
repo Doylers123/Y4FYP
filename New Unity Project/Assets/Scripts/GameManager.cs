@@ -62,10 +62,12 @@ public class GameManager : MonoBehaviour {
             } else {
                 p1Lives[i].enabled = false;
             }
-
             if (p1Health <= 0) {
-                player1.SetActive (false);
-                P2Win.SetActive (true);
+                Time.timeScale = 0f;// freeze time
+                player1.SetActive (false); //hide player
+                P2Win.SetActive (true); // p2 win screen activates
+                audio.Pause ();// music stops
+                p1Health = 5;
             }
         } //for
 
@@ -91,7 +93,7 @@ public class GameManager : MonoBehaviour {
                 player1.SetActive (false);
                 P2Win.SetActive (true);
                 audio.Pause ();
-                P1CurHealth = 5;
+                p1Health = 5;
             }
 
             if (p2Health <= 0) {
@@ -104,11 +106,11 @@ public class GameManager : MonoBehaviour {
 
         } // For
 
-        if (Input.GetKeyDown (KeyCode.Escape)) {
-            if (GameIsPaused) {
-                Resume ();
+        if (Input.GetKeyDown (KeyCode.Escape)) {// if escape key is pressed
+            if (GameIsPaused) {// if game is paused is true
+                Resume ();// run resume method
             } else {
-                Pause ();
+                Pause ();// Runs pause method
             }
         }
 
@@ -141,21 +143,21 @@ public class GameManager : MonoBehaviour {
     } //HurtP2
 
     public void Resume () {
-        pauseMenuUI.SetActive (false);
-        Time.timeScale = 1f;
-        GameIsPaused = false;
-        audio.Play ();
+        pauseMenuUI.SetActive (false);// sets pause menu to inactive
+        Time.timeScale = 1f;// resumes time
+        GameIsPaused = false; // bool is false
+        audio.Play (); // resumes audio
     }
 
     void Pause () {
-        pauseMenuUI.SetActive (true);
-        Time.timeScale = 0f;
-        GameIsPaused = true;
-        audio.Pause ();
+        pauseMenuUI.SetActive (true); // sets pause menu to active
+        Time.timeScale = 0f; // freezes time
+        GameIsPaused = true; /// bool is true
+        audio.Pause (); // pauses audio
     }
     public void LoadMenu () {
-        Time.timeScale = 1f;
-        SceneManager.LoadScene (0);
+        Time.timeScale = 1f; // resumes time
+        SceneManager.LoadScene (0); // loads scene 0
     }
     public void QuitGame () {
         Debug.Log ("Quitting");

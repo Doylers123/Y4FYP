@@ -13,7 +13,8 @@ public class CoinSpawner : MonoBehaviour {
     // Start is called before the first frame update
     void Start () {
         coinSpawnAllowed = true; // coin spawn is on
-        InvokeRepeating ("SpawnCoin", 5f, 1f); //Repeat the spawn in intervals of 1 second after the initial wait of 5 seconds
+        //Repeat the spawn in intervals of 1 second after the initial wait of 5 seconds
+        InvokeRepeating ("SpawnCoin", 5f, 1f); 
     }
 
     // SpawnCoin
@@ -21,7 +22,7 @@ public class CoinSpawner : MonoBehaviour {
         // if coin spawn is on
         if (coinSpawnAllowed == true) {
             coinRandomSpawnPoint = Random.Range (0, coinSpawnPoints.Length); // sets spawn point at random
-            coinItem = Random.Range (0, coin.Length); //sets the item to be put in points
+            coinItem = Random.Range (0, coin.Length); //sets the item to be put in spawn points
             Instantiate (coin[coinItem], coinSpawnPoints[coinRandomSpawnPoint].position,
                 Quaternion.identity); // initiates the spawns
         }

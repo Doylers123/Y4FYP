@@ -24,11 +24,11 @@ public class Countdown : MonoBehaviour {
     public void Update () {
         // deltaTime is the time in seconds it took to complete the last frame
         currentTime -= 1 * Time.deltaTime;
-        countdown.text = currentTime.ToString ("00");
+        countdown.text = currentTime.ToString ("0");
 
-        if (currentTime <= 0) {
-            currentTime = 0;
-            winner ();
+        if (currentTime <= 0) { //if the current time is less than or equal to 0
+            currentTime = 0; // current time stays at 0
+            winner (); // runs winner() method
         }
     } //Update
 

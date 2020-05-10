@@ -7,19 +7,16 @@ public class RoundStart : MonoBehaviour {
     public GameObject countdownDisplay;
 
     private void Start () {
-
-        // StartCoroutine(countdownToStart());
-        StartCoroutine (startDelay ());
-
+        StartCoroutine (startDelay ()); // starts the IEnumerator for startDelay();
     }
 
     IEnumerator startDelay () {
-        Time.timeScale = 0;
-        float pauseTime = Time.realtimeSinceStartup + 3.5f;
-        while (Time.realtimeSinceStartup < pauseTime)
+        Time.timeScale = 0; // freezes time
+        float pauseTime = Time.realtimeSinceStartup + 3.5f; //ppauses time for 3.5 seconds
+        while (Time.realtimeSinceStartup < pauseTime) // while realtimeSinceStartup is greater than the pause time
             yield return 0;
-        countdownDisplay.gameObject.SetActive (false);
-        Time.timeScale = 1;
+        countdownDisplay.gameObject.SetActive (false); // turns off the countdown display
+        Time.timeScale = 1; //unfreezes time
     }
 
 }

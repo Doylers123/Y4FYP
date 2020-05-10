@@ -2,26 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
-{
-Score score;
+public class Player : MonoBehaviour {
+    Score score;
 
     // Start is called before the first frame update
-    void Start()
-    {
-        
+    void Start () {
+
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
+    void Update () {
+
     }
 
-    void OnCollisionEnter2D(Collision2D col)
-    {
-        if(col.gameObject.tag.Equals("Enemy"))
-        {
+    void OnCollisionEnter2D (Collision2D col) {
+        if (col.gameObject.tag.Equals ("Enemy")) {
             Score.scoreAmount += 1;
         }
     }

@@ -17,3 +17,7 @@ This GitHub repository holds our final year project of our 4th year in Galway-Ma
 * Clone This Repository
 * Click on BattleBeansFinal folder
 * Run BattleBeans.exe
+
+## Video Presentation
+This is the link for the YouTube Video running through the games and its features:
+https://www.youtube.com/watch?v=4Sa85aqMVlk&t=9s
